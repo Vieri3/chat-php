@@ -182,13 +182,13 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 }
 
                 // 2. Формирование ссылки
-                // const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/" . "temp/" ?>" || '';
-                const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/vieri/ch/" . "temp/" ?>" || '';
+                // для development
+                const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/" . "temp/" ?>" || '';
+                // для productiom
+                // const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/vieri/ch/" . "temp/" ?>" || '';
                 
                 const fileNameUpload = file.name;
                 const fileUrl = baseLink + fileNameUpload;
-
-                // const messageLinkOut = `<a href="${fileUrl}" download>${fileNameUpload}</a>`;
 
                 // 3. Отправка сообщения с ссылкой
                 const formData2 = new FormData();
