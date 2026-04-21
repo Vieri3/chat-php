@@ -1,10 +1,13 @@
 :root{
     --main-bg-color: #000000;
     --main-color: #00ff00;
-    --user-color: #ff0000;
+    --user-color: #ef4444;
     --header-color: #4a5568;
     --header-logo-color: #ffffff;
     --time-color: #a0aec0;
+    --error-color: #ef4444;
+    --link-upload-color: #f59e0b;
+    --link-upload-color-hover: #0ea5e9;
 }
 * {
     margin: 0;
@@ -140,10 +143,10 @@ button {
     padding: 10px 20px;
     background: rgb(0, 0, 0);
     border-radius: 5px;
-    border: 1px dotted #00ff00;;
+    border: 1px dotted var(--main-color);
     cursor: pointer;
     font-size: 14px;
-    color: #00ff00;
+    color: var(--main-color);
 }
 
 button:hover {
@@ -171,11 +174,11 @@ button:hover {
 }
 
 .error{
-    color: #ff0000;
+    color: var(--error-color)
 }
 
 .link-header{
-    color:#00ff00;
+    color:var(--main-color);
     text-decoration: none;
 }
 
@@ -183,12 +186,12 @@ button:hover {
     color:#ff0000;
 }
 
-.link-download{
-    color: #f59e0b
+.link-upload{
+    color: var(--link-upload-color)
 }
 
-.link-download:hover {
-    color: #0ea5e9;
+.link-upload:hover {
+    color: var(--link-upload-color-hover);
 }
 
 .input-file input[type=file] {
@@ -201,10 +204,10 @@ button:hover {
 }
 
 .input-file span {
-	color: #f59e0b;
+	color: var(--link-upload-color);
 }
 
 .input-file:hover span {
     cursor: pointer;
-	color:#0ea5e9;
+	color:var(--link-upload-color-hover);
 }

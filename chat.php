@@ -92,7 +92,7 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 const div = document.createElement('div');
                 div.className = 'message';
 
-                const MSG = msg.type == 'link' ? `<a href="${msg.fileurl}" class="link-download" download>${msg.filenameupload}</a>` : escapeHtml(msg.text);
+                const MSG = msg.type == 'link' ? `<a href="${msg.fileurl}" class="link-upload" download>${msg.filenameupload}</a>` : escapeHtml(msg.text);
 
                 div.innerHTML = `
                     <div class="message-header">
