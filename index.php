@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Здесь можно заменить на свою логику проверки (например, из БД)
     if ($entered_code === '32') {
         $_SESSION['access_granted'] = true;
-        $_SESSION["name"] = "Admin";
+        $_SESSION["name"] = 'Admin';
         header('Location: chat.php');
         exit;
-    } else if ($entered_code === '777') {
+    } else if ($entered_code === '0524') {
         $_SESSION['access_granted'] = true;
-        $_SESSION["name"] = "User";
+        $_SESSION["name"] = 'User';
         header('Location: chat.php');
         exit;
     } else {
@@ -26,21 +26,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
-    <title>💬 PHP - chat</title>
-    <link rel="stylesheet" href="./style.css?v1.0.1">
-</head>
+<?php require 'header.php' ?>
+
+<style>
+    body {
+        background: #000000;
+        color: #00ff00;
+        width: 100%;
+        height: 100%;
+        /* Запрещает скролл страницы */
+        overflow: hidden;
+        /* Фиксирует страницу, предотвращая сдвиг при открытии клавиатуры */
+        position: fixed;
+        /* Отключает обработку жестов браузером (панорамирование/зум) */
+        touch-action: none;
+    }
+
+    form {
+        margin-top: 10px;
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    input {
+        font-size: 24px;
+        outline: none;
+        border: none;
+        border-bottom: 1px dotted #00ff00;
+        background-image: none;
+        background-color: transparent;
+        box-shadow: none;
+        color: #00ff00;
+        margin-left: 10px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        background: #000000;
+        border-radius: 5px;
+        border: 1px dotted #00ff00;
+        cursor: pointer;
+        font-size: 14px;
+        color: #00ff00;
+    }
+
+    button:hover {
+        background: rgb(64, 64, 64);
+    }
+</style>
 
 <body>
-    <form method="post" class="login-container">
-        <div><b>>:</b><input name="code" required class="login-input" type="text" autocomplete="off" /></div>
+    <form method="post">
+        <div><b>>:</b><input name="code" type="text" autocomplete="off" required /></div>
         <button type="submit">Execute</button>
-        <?php if (isset($error)) echo "<div class='error'>$error</div>"; ?>
+        <?php if (isset($error)) echo "<div style='color: red;'>$error</div>"; ?>
     </form>
 </body>
 

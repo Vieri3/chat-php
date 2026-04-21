@@ -9,35 +9,25 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
     $name = $_SESSION["name"];
 }
 ?>
-<!DOCTYPE html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
-    <title>💬 PHP - chat</title>
-    <link rel="stylesheet" href="./style.css?v1.0.1">
-</head>
+<?php require 'header.php' ?>
 
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <div>💬 PHP</div>
-
-            <!-- кнопка-загрузка(форма) отправка файлов -->
+            <div class="header-logo"><?php echo $logo_chat; ?></div>
             <form enctype="multipart/form-data">
                 <label class="input-file">
-                    <input type="file" class="input-file" id="inp-add-file-server">
-                    <span>file</span>
+                    <input type="file" class="input-file header-link" id="inp-add-file-server">
+                    <span>FILE</span>
                 </label>
             </form>
-            
-            <a href="clear.php" class="link-header">Clear</a>
-            <a href="logout.php" class="link-header">Exit</a>
+            <a href="clear.php" class="header-link">Clear</a>
+            <a href="logout.php" class="header-link">Exit</a>
         </div>
         <div class="messages" id="messages"></div>
         <div class="input-area">
-            <input type="text" id="message-input" class="message-input" placeholder="Enter a message..." maxlength="500" autocomplete="off">
+            <input type="text" id="message-input" class="message-input" placeholder="Enter a message..." maxlength="500" autocomplete="off" />
             <button id="send-btn" class="send-btn">Send</button>
         </div>
     </div>
@@ -92,7 +82,7 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 const div = document.createElement('div');
                 div.className = 'message';
 
-                const MSG = msg.type == 'link' ? `<a href="${msg.fileurl}" class="link-upload" download>${msg.filenameupload}</a>` : escapeHtml(msg.text);
+                const MSG = msg.type == 'link' ? `<a href="${msg.fileurl}" class="message-link-upload" download>${msg.filenameupload}</a>` : escapeHtml(msg.text);
 
                 div.innerHTML = `
                     <div class="message-header">
@@ -182,11 +172,7 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 }
 
                 // 2. Формирование ссылки
-                // для development
-                const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/" . "temp/" ?>" || '';
-                // для productiom
-                // const baseLink = "<?php echo "https://" . $_SERVER['SERVER_NAME'] . "/vieri/ch/" . "temp/" ?>" || '';
-                
+                const baseLink = '<?php echo $baseLink; ?>' || '';
                 const fileNameUpload = file.name;
                 const fileUrl = baseLink + fileNameUpload;
 
