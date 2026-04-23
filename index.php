@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else if ($entered_code === '0524') {
         $_SESSION['access_granted'] = true;
-        $_SESSION["name"] = 'User';
+        $_SESSION["name"] = 'DRCTK';
         header('Location: chat.php');
         exit;
     } else {
@@ -53,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     input {
-        font-size: 24px;
         outline: none;
         border: none;
         border-bottom: 1px dotted #00ff00;

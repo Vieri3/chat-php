@@ -5,15 +5,15 @@ $title_chat = '💬 PHP - chat';
 $logo_chat = '💬 PHP';
 
 // при изменениях стилей чтобы избавиться от кеширования броаузера
-$versus_style = '?v1.0.2';
+$versus_style = '?v1.0.5';
 
 // Формирование ссылки для SendFile() 
-$isDev = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1');
+$is_dev = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1' || $_SERVER['SERVER_NAME'] === 'chat-php');
 
-if ($isDev) {
+if ($is_dev) {
     // для development
-    $baseLink = "https://" . $_SERVER['SERVER_NAME'] . "/temp/";
+    $base_link = "https://" . $_SERVER['SERVER_NAME'] . "/";
 } else {
     // для productiom
-    $baseLink = "https://" . $_SERVER['SERVER_NAME'] . "/vieri/chat-php/temp/";
+    $base_link = "https://" . $_SERVER['SERVER_NAME'] . "/vieri/chat-php/";
 }

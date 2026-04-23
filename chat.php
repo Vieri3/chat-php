@@ -82,7 +82,7 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 const div = document.createElement('div');
                 div.className = 'message';
 
-                const MSG = msg.type == 'link' ? `<a href="${msg.fileurl}" class="message-link-upload" download>${msg.filenameupload}</a>` : escapeHtml(msg.text);
+                const MSG = msg.type == 'link' ? `<a href="${msg.link_download}" class="message-link-upload" download>${msg.name_of_download_link}</a>` : escapeHtml(msg.text);
 
                 div.innerHTML = `
                     <div class="message-header">
@@ -158,34 +158,17 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
             }
 
             try {
+
+                // Отправка сообщения с ссылкой
                 const formData = new FormData();
+                formData.append('type', 'link');
+                formData.append('name', myName);
+                formData.append('base_link', '<?php echo $base_link; ?>')
                 formData.append('file', file);
-
-                // 1. Загрузка файла
-                const uploadResponse = await fetch('upload.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (!uploadResponse.ok) {
-                    throw new Error('Ошибка загрузки файла');
-                }
-
-                // 2. Формирование ссылки
-                const baseLink = '<?php echo $baseLink; ?>' || '';
-                const fileNameUpload = file.name;
-                const fileUrl = baseLink + fileNameUpload;
-
-                // 3. Отправка сообщения с ссылкой
-                const formData2 = new FormData();
-                formData2.append('type', 'link');
-                formData2.append('name', myName);
-                formData2.append('filenameupload', fileNameUpload);
-                formData2.append('fileurl', fileUrl);
 
                 const messageResponse = await fetch('send-file.php', {
                     method: 'POST',
-                    body: formData2
+                    body: formData
                 });
 
                 if (!messageResponse.ok) {
@@ -206,6 +189,8 @@ if (!isset($_SESSION['access_granted']) || $_SESSION['access_granted'] !== true)
                 
             } catch (error) {
                 console.error(error);
+            }finally{
+                document.getElementById('inp-add-file-server').value = "";
             }
         };
 
